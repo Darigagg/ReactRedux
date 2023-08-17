@@ -1,52 +1,32 @@
-import React from "react";
-import Main from "./Main";
-import axios from "axios";
-import Todo from "./Todo";
-function App(){
-    
-  const[todos,setTodos] = React.useState([])
-   
-React.useEffect(() => {
-  async  function getTodos(){
-    const response   = await axios.get("http://localhost:9999/todos")
-  setTodos(response.data)
-  }
-  getTodos()
-},[])
-console.log(todos)
-    return (
-      < div className="div">
-      <Main/>
-      <h3 className='text-1'>TodoList</h3>
-        <div className='div-3'>
-          <div>
-            <button className='button'>All</button>
-          </div>
-          <div>
-            <button className='button'>Done</button>
-          </div>
-          <div>
-            <button className='button'>Todo</button>
-          </div>
-        </div>
+import React from 'react';
+import './index.css';
+import Products from './products';
+import Favorites from './Favorites';
+import Card from './store/Card';
+import СardSlice from './store/Card';
+import { Link, Route, Routes } from 'react-router-dom';
 
-    {todos.map(obj => <Todo title={obj.title} isDone={obj.isDone} id={obj.id}/>
-  
-        )}
+function App() {
+  return (
+    <div className="App">
+      <Card/>
+      <СardSlice/>
+        <p>
+          <Link to='products'>Products</Link>
+        </p>
+        <p>
+          <Link to='favorites'>Favorites</Link>
+        </p>
+        <Routes>
 
-        <div className='div-100'>
+          <Route path='products' element={<Products/>}/>
+          <Route path='favorites' element={<Favorites/>}/>
 
-          <div >
-            <button className='last-b'>Delete done tasks</button>
-          </div>
+        </Routes>
 
-          <div>
-            <button className='last-b'>Delete all tasks</button>
-          </div>
+     </div>
+  )
+}
 
-        </div>
-      </div>
-  
-    )
-  }
-  export default App;
+export default App;
+
