@@ -20,16 +20,12 @@ export const favoriteSlice = createSlice({
             else{
                 state.value = state.value.filter(obj => obj.id === action.payload.id)
             }
-           },
-
-           addCard: (state,action) => {
-            state.value.push(action.payload)
            }
 
          
-    }
-    
+                }   
+                
 })
 
-export const {addFavorites, addCard} = favoriteSlice.actions
+export const {addFavorites} = favoriteSlice.actions
 export default favoriteSlice.reducer    
